@@ -10,6 +10,6 @@ namespace Kniffel.Models
     {
         public DbSet<Player> Players { get; set; }
         public DbSet<Game> Games { get; set; }
-        public DbSet<Throw> Throws { get; set; }
+        public DbSet<Round> Rounds { get; set; }
     }
 }

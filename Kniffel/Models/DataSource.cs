@@ -19,9 +19,9 @@ namespace Kniffel.Models
             get { return ctx.Games; }
         }
 
-        public IEnumerable<Throw> Throws
+        public IEnumerable<Round> Throws
         {
-            get { return ctx.Throws; }
+            get { return ctx.Rounds; }
         }
     }
 }

@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Kniffel.Models
 {
-    public class Throw
+    public class Round
     {
         public uint Id { get; set; }
         public uint GameId { get; set; }

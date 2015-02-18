@@ -7,11 +7,11 @@ namespace Kniffel.Models
 {
     public class Game
     {
-        public uint Id { get; set; }
+        public uint GameId { get; set; }
         public string Name { get; set; }
         public uint PlayerId { get; set; }
         public byte Result { get; set; } // 0 - поражение, 1 - победа, 2 - ничья
-        public uint BetAmount { get; set; } // сколько поставил
-        public uint WinAmount { get; set; } // сколько выиграл
+        public uint ChipsLost { get; set; } // сколько поставил
+        public uint ChipsWon { get; set; } // сколько выиграл
     }
 }

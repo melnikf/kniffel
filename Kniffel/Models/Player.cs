@@ -7,9 +7,11 @@ namespace Kniffel.Models
 {
     public class Player
     {
-        public uint Id { get; set; }
+        public uint PlayerId { get; set; }
+        public string RegDate { get; set; }
         public string Name { get; set; }
+        public string Pass { get; set; }
         public string Email { get; set; }
-        public uint Cash { get; set; }
+        public uint Balance { get; set; }
     }
 }
