@@ -4,12 +4,11 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
-namespace Kniffel.Models
+namespace Pokker.Models
 {
-    public class KniffelDbContext : DbContext
+    public class PokkerDbContext : DbContext
     {
         public DbSet<Player> Players { get; set; }
         public DbSet<Game> Games { get; set; }
-        public DbSet<Round> Rounds { get; set; }
     }
 }

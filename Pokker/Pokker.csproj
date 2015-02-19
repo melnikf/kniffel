@@ -11,8 +11,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Kniffel</RootNamespace>
-    <AssemblyName>Kniffel</AssemblyName>
+    <RootNamespace>Pokker</RootNamespace>
+    <AssemblyName>Pokker</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -83,14 +83,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\DataSource.cs" />
-    <Compile Include="Models\KniffelDbContext.cs" />
+    <Compile Include="Models\PokkerDbContext.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\Player.cs" />
-    <Compile Include="Models\Round.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="kniffeldb.sqlite3">
+    <Content Include="pokkerdb.sqlite3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Web.Debug.config">

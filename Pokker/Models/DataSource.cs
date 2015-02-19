@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Kniffel.Models
+namespace Pokker.Models
 {
     public class DataSource
     {
-        private KniffelDbContext ctx = new KniffelDbContext();
+        private PokkerDbContext ctx = new PokkerDbContext();
 
         public IEnumerable<Player> Players
         {
@@ -17,11 +17,6 @@ namespace Kniffel.Models
         public IEnumerable<Game> Games
         {
             get { return ctx.Games; }
-        }
-
-        public IEnumerable<Round> Throws
-        {
-            get { return ctx.Rounds; }
         }
     }
 }

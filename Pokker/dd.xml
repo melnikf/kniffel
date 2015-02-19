@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<database>
+    <name>kniffeldb</name>
+    <table>
+        <database></database>
+        <name>Rounds</name>
+        <ddl>CREATE TABLE Rounds (RoundId INTEGER PRIMARY KEY AUTOINCREMENT, GameId INTEGER, Result INTEGER NOT NULL, Bet INTEGER NOT NULL, FOREIGN KEY (GameId) REFERENCES Games (GameId) ON DELETE CASCADE ON UPDATE CASCADE)</ddl>
+        <columns>
+            <column>
+                <name>RoundId</name>
+                <type>INTEGER</type>
+                <constraints>
+                    <constraint>
+                        <type>PRIMARY KEY</type>
+                        <definition>PRIMARY KEY AUTOINCREMENT</definition>
+                    </constraint>
+                </constraints>
+            </column>
+            <column>
+                <name>GameId</name>
+                <type>INTEGER</type>
+            </column>
+            <column>
+                <name>Result</name>
+                <type>INTEGER</type>
+                <constraints>
+                    <constraint>
+                        <type>NOT NULL</type>
+                        <definition>NOT NULL</definition>
+                    </constraint>
+                </constraints>
+            </column>
+            <column>
+                <name>Bet</name>
+                <type>INTEGER</type>
+                <constraints>
+                    <constraint>
+                        <type>NOT NULL</type>
+                        <definition>NOT NULL</definition>
+                    </constraint>
+                </constraints>
+            </column>
+        </columns>
+        <constraints>
+            <constraint>
+                <type>FOREIGN KEY</type>
+                <definition>FOREIGN KEY (GameId) REFERENCES Games (GameId) ON DELETE CASCADE ON UPDATE CASCADE</definition>
+            </constraint>
+        </constraints>
+        <rows>
+        </rows>
+    </table>
+    <table>
+        <database></database>
+        <name>Games</name>
+        <ddl>CREATE TABLE Games (GameId INTEGER PRIMARY KEY AUTOINCREMENT, Name TEXT NOT NULL, PlayerId INTEGER, ChipsWon INTEGER NOT NULL, ChipsLost INTEGER NOT NULL, Result INTEGER NOT NULL, FOREIGN KEY (PlayerId) REFERENCES Players (PlayerId) ON DELETE CASCADE ON UPDATE CASCADE)</ddl>
+        <columns>
+            <column>
+                <name>GameId</name>
+                <type>INTEGER</type>
+                <constraints>
+                    <constraint>
+                        <type>PRIMARY KEY</type>
+                        <definition>PRIMARY KEY AUTOINCREMENT</definition>
+                    </constraint>
+                </constraints>
+            </column>
+            <column>
+                <name>Name</name>
+                <type>TEXT</type>
+                <constraints>
+                    <constraint>
+                        <type>NOT NULL</type>
+                        <definition>NOT NULL</definition>
+                    </constraint>
+                </constraints>
+            </column>
+            <column>
+                <name>PlayerId</name>
+                <type>INTEGER</type>
+            </column>
+            <column>
+                <name>ChipsWon</name>
+                <type>INTEGER</type>
+                <constraints>
+                    <constraint>
+                        <type>NOT NULL</type>
+                        <definition>NOT NULL</definition>
+                    </constraint>
+                </constraints>
+            </column>
+            <column>
+                <name>ChipsLost</name>
+                <type>INTEGER</type>
+                <constraints>
+                    <constraint>
+                        <type>NOT NULL</type>
+                        <definition>NOT NULL</definition>
+                    </constraint>
+                </constraints>
+            </column>
+            <column>
+                <name>Result</name>
+                <type>INTEGER</type>
+                <constraints>
+                    <constraint>
+                        <type>NOT NULL</type>
+                        <definition>NOT NULL</definition>
+                    </constraint>
+                </constraints>
+            </column>
+        </columns>
+        <constraints>
+            <constraint>
+                <type>FOREIGN KEY</type>
+                <definition>FOREIGN KEY (PlayerId) REFERENCES Players (PlayerId) ON DELETE CASCADE ON UPDATE CASCADE</definition>
+            </constraint>
+        </constraints>
+        <rows>
+        </rows>
+    </table>
+    <table>
+        <database></database>
+        <name>Players</name>
+        <ddl>CREATE TABLE Players (PlayerId INTEGER PRIMARY KEY AUTOINCREMENT, RegDate TEXT NOT NULL, Email TEXT NOT NULL UNIQUE, Name TEXT NOT NULL UNIQUE, Pass TEXT NOT NULL, Balance INTEGER NOT NULL)</ddl>
+        <columns>
+            <column>
+                <name>PlayerId</name>
+                <type>INTEGER</type>
+                <constraints>
+                    <constraint>
+                        <type>PRIMARY KEY</type>
+                        <definition>PRIMARY KEY AUTOINCREMENT</definition>
+                    </constraint>
+                </constraints>
+            </column>
+            <column>
+                <name>RegDate</name>
+                <type>TEXT</type>
+                <constraints>
+                    <constraint>
+                        <type>NOT NULL</type>
+                        <definition>NOT NULL</definition>
+                    </constraint>
+                </constraints>
+            </column>
+            <column>
+                <name>Email</name>
+                <type>TEXT</type>
+                <constraints>
+                    <constraint>
+                        <type>NOT NULL</type>
+                        <definition>NOT NULL </definition>
+                    </constraint>
+                    <constraint>
+                        <type>UNIQUE</type>
+                        <definition>UNIQUE</definition>
+                    </constraint>
+                </constraints>
+            </column>
+            <column>
+                <name>Name</name>
+                <type>TEXT</type>
+                <constraints>
+                    <constraint>
+                        <type>NOT NULL</type>
+                        <definition>NOT NULL </definition>
+                    </constraint>
+                    <constraint>
+                        <type>UNIQUE</type>
+                        <definition>UNIQUE</definition>
+                    </constraint>
+                </constraints>
+            </column>
+            <column>
+                <name>Pass</name>
+                <type>TEXT</type>
+                <constraints>
+                    <constraint>
+                        <type>NOT NULL</type>
+                        <definition>NOT NULL</definition>
+                    </constraint>
+                </constraints>
+            </column>
+            <column>
+                <name>Balance</name>
+                <type>INTEGER</type>
+                <constraints>
+                    <constraint>
+                        <type>NOT NULL</type>
+                        <definition>NOT NULL</definition>
+                    </constraint>
+                </constraints>
+            </column>
+        </columns>
+        <rows>
+        </rows>
+    </table>
+</database>
