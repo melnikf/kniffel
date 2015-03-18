@@ -1,0 +1,126 @@
+﻿body {
+    margin: 0px;
+    padding: 0px;
+    font-family: "Open Sans Light", Arial, sans-serif;
+    font-family: "Open Sans Light";
+    font-style: normal;
+    font-weight: 200;
+    line-height: 1.5;
+    background-color: #FFFFFF;
+    color: #1A1A1A;
+}
+
+.container {
+    margin-left: 4%;
+    margin-right: 4%;
+}
+
+.title {
+    font-size: 45px;
+}
+
+a.title:link {
+    color: #4D4D4D;
+}
+
+a.title:visited {
+    color: #4D4D66;
+}
+
+.header {
+    padding-left: 20px;
+    padding-right: 10px;
+    background-color: #EBA735;
+    color: #4D4D4D;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items:center;
+}
+
+.header-title {
+
+}
+
+.header-buttons {
+    padding: 4px;
+}
+
+
+.form-std {
+    width: 400px;
+    padding: 4px;
+    border-radius: 4px;
+}
+
+.inp-std {
+    display: flex;
+    flex-direction: row;
+    padding: 4px;
+    font-size: 0.8em;
+}
+
+.inp-std > label {
+    flex-grow: 1;
+    font-weight: 400;
+}
+
+.inp-std > input {
+    padding: 6px 12px;
+    color: #333333;
+    background-color: #FFFFFF;
+    border: 1px solid #EBA735;
+    border-radius: 4px;
+    width: 60%;
+}
+
+input:focus {
+    transition: box-shadow 0.45s; 
+    box-shadow: 0 0 1px #F0F0F0, 0 0 8px #EBA735; 
+}
+
+.btn-std {
+    background-color: #EBA735;
+    padding: 10px 10px;
+    border-radius: 4px;
+    color: #333333;
+    background-color: #E5E5E5;
+    transition: box-shadow 0.45s;
+    transition: background-color 0.25s;
+}
+
+.btn-std:hover {
+    z-index: 4;
+    box-shadow: 0 0 1px #F0F0F0, 0 0 8px #EBA735; 
+}
+
+.btn-std:active {
+    z-index: 4;
+    background-color: #EBA735; 
+}
+
+.btn-black {
+    background-color: #FFFFFF;
+    padding: 10px 10px;
+    border-radius: 4px;
+    color: #1A1A1A;
+}
+
+.btn-black:hover {
+    z-index: 4;
+    transition: background-color 0.25s;
+    background-color: #3A3A3A;
+    color: #FFFFFF;
+}
+
+.row-std {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.col-std {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

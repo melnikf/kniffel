@@ -1,0 +1,41 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Pokker.master.cs" Inherits="Pokker.Pokker" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Pokker - Most bearded online poker EVAR!</title>
+    <link rel="stylesheet" href="/Content/Pokker.css" />
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="header">
+            <div class="header-title">
+                <a class="title" runat="server" href="~/">Pokker</a>
+            </div>
+            <div class="header-buttons">
+                <asp:LoginView runat="server" ViewStateMode="Disabled">
+                    <AnonymousTemplate>
+                        <a class="btn-black" runat="server" href="~/Users/SignUp.aspx">Регистрация</a></li>
+                        <a class="btn-black" runat="server" href="~/Users/Login.aspx">Вход</a></li>
+                    </AnonymousTemplate>
+                    <LoggedInTemplate>
+                        <%--<asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />--%>
+                    </LoggedInTemplate>
+                </asp:LoginView>
+            </div>
+        </div>
+        <div class="body-content container">
+            <asp:ContentPlaceHolder ID="body" runat="server">
+
+            </asp:ContentPlaceHolder>
+        </div>
+        <hr />
+        <div class="container">
+            <footer>
+                <p>&copy; <%: DateTime.Now.Year %> - Pokker</p>
+            </footer>
+        </div>
+    </form>
+</body>
+</html>
