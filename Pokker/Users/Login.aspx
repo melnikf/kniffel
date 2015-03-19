@@ -3,15 +3,18 @@
 <asp:Content ID="bodyLogin" ContentPlaceHolderID="body" runat="server">
 
     <div class="form-std container">
-        <h1>Вход</h1>
         <div class='col-std'>
             <div class='inp-std'>
                 <label for='uname'>Имя:</label>
-                <input id='uname' name='uname' type='text'/></div>
+                <input id='uname' name='uname' type='text' runat='server'/>
+            </div>
             <div class='inp-std'>
                 <label for='upass'>Пароль:</label>
-                <input id='upass' name='upass' type='text'/>
+                <input id='upass' name='upass' type='text' runat='server'/>
+                <br />
             </div>
+            <label class="error" runat="server" id="lblError"></label>
+            <input class='btn-std' type='submit' id='btnLogin' runat='server' value='Войти' onserverclick='btnLogin_Click'/>
         </div>
     </div>
 

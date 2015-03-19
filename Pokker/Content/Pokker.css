@@ -49,6 +49,7 @@ a.title:visited {
 
 .form-std {
     width: 400px;
+    margin-top: 40px;
     padding: 4px;
     border-radius: 4px;
 }
@@ -56,8 +57,8 @@ a.title:visited {
 .inp-std {
     display: flex;
     flex-direction: row;
-    padding: 4px;
     font-size: 0.8em;
+    margin-top: 8px;
 }
 
 .inp-std > label {
@@ -81,12 +82,13 @@ input:focus {
 
 .btn-std {
     background-color: #EBA735;
-    padding: 10px 10px;
+    padding: 8px 10px 8px 10px;
     border-radius: 4px;
+    border: none;
     color: #333333;
-    background-color: #E5E5E5;
     transition: box-shadow 0.45s;
     transition: background-color 0.25s;
+    margin-top: 8px;
 }
 
 .btn-std:hover {
@@ -94,15 +96,11 @@ input:focus {
     box-shadow: 0 0 1px #F0F0F0, 0 0 8px #EBA735; 
 }
 
-.btn-std:active {
-    z-index: 4;
-    background-color: #EBA735; 
-}
-
 .btn-black {
     background-color: #FFFFFF;
-    padding: 10px 10px;
+    padding: 8px 10px 8px 10px;
     border-radius: 4px;
+    border: none;
     color: #1A1A1A;
 }
 
@@ -122,5 +120,11 @@ input:focus {
 .col-std {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
+}
+
+.error {
+    color: #EE4C4C;
+    font-size: 0.8em;
+    padding-top: 8px;
 }
