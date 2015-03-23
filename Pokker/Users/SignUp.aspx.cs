@@ -42,8 +42,20 @@ namespace Pokker.Users
             }
 
             lblError.Visible = false;
-            UserUtils.SignUpUser(uname.Value, umail.Value, upass.Value);
-            // TODO: Перенаправление на персональную страницу.
+
+            try
+            {
+                UserUtils.SignUpUser(uname.Value, umail.Value, upass.Value);
+                Page.ClientScript.RegisterStartupScript(this.GetType(),
+                "alert", "Reg();", true);
+                // TODO: Перенаправление на персональную страницу.
+            }
+            catch
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(),
+                "alert", "NoReg();", true);
+            }
+            
         }
     }
 }
