@@ -83,6 +83,7 @@
     <Content Include="Content\Pokker.css" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="MainPage\Entrance.aspx" />
     <Content Include="Users\Login.aspx" />
     <Content Include="Users\SignUp.aspx" />
     <Content Include="Web.config">
@@ -100,6 +101,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="MainPage\Entrance.aspx.cs">
+      <DependentUpon>Entrance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MainPage\Entrance.aspx.designer.cs">
+      <DependentUpon>Entrance.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MainPage\MainPageUtils.cs" />
     <Compile Include="Models\PokkerDbContext.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\Player.cs" />
@@ -146,6 +155,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

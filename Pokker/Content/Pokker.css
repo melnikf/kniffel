@@ -129,3 +129,57 @@ input:focus {
     padding-top: 8px;
 }
 
+
+.status-bar
+{
+    font-family:Impact;
+    width:500px;
+    height:300px;
+}
+
+.status-bar li
+{
+    background-color:#EBA735;
+    list-style-type:none;
+    border-left:solid;
+    border-left-color:#EB7835;
+    padding-left:10px;
+    margin:5px;
+}
+
+.row-content 
+{
+    display: flex;
+    flex-direction: row;
+}
+
+.entrance-bar
+{
+    padding-left:15px;
+    padding-top:20px;
+    position: relative; 
+}
+
+.btn-entrance 
+{
+    position:absolute;
+    background-color: #FFFFFF;
+    border-radius: 4px;
+    border-style:dotted;
+    border-color:#EBA735;
+    color: #EBA735;
+    text-decoration:none;
+    height:150px;
+    width:150px;
+    padding-top:100px;
+    padding-left:70px;
+}
+
+.btn-entrance:hover
+{
+    border-style:solid;
+    text-decoration:underline;
+    font-weight:bold;
+}
+
+

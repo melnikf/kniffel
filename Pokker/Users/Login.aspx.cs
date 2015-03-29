@@ -11,7 +11,7 @@ namespace Pokker.Users
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            lblError.Visible = false;
+            lblError.Visible = false;            
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
@@ -20,12 +20,16 @@ namespace Pokker.Users
             {
                 lblError.Visible = true;
                 lblError.InnerText = "Имена короче 4-х знаков запрещены";
+                Page.ClientScript.RegisterStartupScript(this.GetType(),
+                "alert", "NoReg();", true);
                 return;
             }
             if (!UserUtils.StringValid(upass.Value, 4))
             {
                 lblError.Visible = true;
                 lblError.InnerText = "Минимальное количество символов в пароле - 4";
+                Page.ClientScript.RegisterStartupScript(this.GetType(),
+                "alert", "NoReg();", true);
                 return;
             }
 
@@ -33,11 +37,14 @@ namespace Pokker.Users
             {
                 lblError.Visible = true;
                 lblError.InnerText = "Неправильное имя или пароль";
+                Page.ClientScript.RegisterStartupScript(this.GetType(),
+                "alert", "NoReg();", true);
                 return;
             }
 
             lblError.Visible = false;
-            // TODO: Перенаправление на персональную страницу.
+            string Login=uname.Value.ToString();
+            Response.Redirect("http://localhost:54719/MainPage/Entrance.aspx?Login="+Login);
         }
     }
 }
