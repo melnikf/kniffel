@@ -120,7 +120,7 @@ input:focus {
 .col-std {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 .error {
@@ -195,18 +195,11 @@ input:focus {
 }
 
 .poker-screen {
-    width: 800px;
+    width: 400px;
     height: 400px;
     border: 1px solid #4D4D4D;
     padding: 8px;
     margin: 4px;
-}
-
-.poker-join {
-    width: 600px;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
 }
 
 .poker-state {
@@ -214,5 +207,5 @@ input:focus {
 }
 
 .poker-players {
-    width: 100%;
+    width: 400px;
 }

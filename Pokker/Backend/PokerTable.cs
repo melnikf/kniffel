@@ -17,7 +17,7 @@ namespace Pokker.Backend
 
         private Deck deck;                      // Колода.
         private List<PokerPlayer> players;      // Игроки.
-        private List<Card> ocards;              // Открытые карты.
+        private List<Card> board;               // Открытые карты.
 
         /*
          * 0 - ready-to-game
@@ -31,9 +31,7 @@ namespace Pokker.Backend
         private int aplayer = -1;
         private int button = -1;
 
-        public event EventHandler PlayerJoined;
-        public event EventHandler<ReadyEventArgs> Ready;
-        public event EventHandler<BettingEventArgs> Betting;
+        public event EventHandler Updated;
         public event EventHandler Showdown;
 
         public PokerSettings Settings
@@ -67,7 +65,7 @@ namespace Pokker.Backend
             stg = new PokerSettings();
             deck = new Deck();
             players = new List<PokerPlayer>(stg.PlayersMax);
-            ocards = new List<Card>();
+            board = new List<Card>();
         }
 
         public int GetPlayerBet(int n)
@@ -78,6 +76,21 @@ namespace Pokker.Backend
         public string GetPlayerName(int n)
         {
             return players[n].Name;
+        }
+
+        public int MyId(string name)
+        {
+            PokerPlayer tpl;
+            int id = -1;
+
+            if(players != null)
+            {
+                tpl = players.FirstOrDefault(p => p.Name == name);
+                if(tpl != null)
+                    id = (int)tpl.Id;
+            }
+
+            return id;
         }
 
         public int Join(string name)
@@ -99,21 +112,20 @@ namespace Pokker.Backend
 
                     tpl = new PokerPlayer((uint)id, pl.PlayerId, pl.Name, (uint)pl.Cash);
                     players.Add(tpl);
-                    
-                    this.PlayerJoinedInvoke();
 
                     // Запускаем игру, если гроков достаточно.
                     if (players.Count >= stg.PlayersMin && round < 0)
                     {
                         round = 0;
                         delay = players.Count == stg.PlayersMax ? 0 : stg.StartDelay;
-                        this.ReadyInvoke((uint)delay);
                         Task.Run(async () => 
                             {
                                 await Task.Delay(delay);
                                 this.StartGame();
                             });
                     }
+
+                    this.UpdatedInvoke();
                 }
             }
 
@@ -160,9 +172,9 @@ namespace Pokker.Backend
             return completed;
         }
 
-        public Card[] OpenCards()
+        public Card[] ShowBoard()
         {
-            return ocards.ToArray();
+            return board.ToArray();
         }
 
         public Card[] ShowHand(uint id)
@@ -203,6 +215,8 @@ namespace Pokker.Backend
 
         private void StartGame()
         {
+            this.UpdatedInvoke();
+
             button = 0;
 
             // Раунд 1. Раздаем по две карты. Круг торговли.
@@ -217,6 +231,7 @@ namespace Pokker.Backend
             // 
             round = 2;
             ShuffleDeck();
+            OpenCards(3);
             BettingRound();
             MoveButton();
 
@@ -224,6 +239,7 @@ namespace Pokker.Backend
             // 
             round = 3;
             ShuffleDeck();
+            DealCards(1);
             BettingRound();
             MoveButton();
 
@@ -231,12 +247,14 @@ namespace Pokker.Backend
             // 
             round = 4;
             ShuffleDeck();
+            DealCards(1);
             BettingRound();
             MoveButton();
 
             // Раунд 5. Игроки выбирают комбинации, результат.
             //
             round = 5;
+            ShowDown();
         }
 
         private void DealCards(int q)
@@ -248,6 +266,14 @@ namespace Pokker.Backend
                 for (i = 0; i < q; i++)
                     tpl.AddCard(deck.GetCard());
             }
+        }
+
+        private void OpenCards(int q)
+        {
+            int i;
+
+            for (i = 0; i < q; i++)
+                board.Add(deck.GetCard());
         }
 
         private void BettingRound()
@@ -273,7 +299,7 @@ namespace Pokker.Backend
                 {
                     aplayer = n;
                     tsk = new Task(() => this.WaitPlayer(n));
-                    this.BettingInvoke(players[n].Id, (uint)stg.WaitTimeout);
+                    this.UpdatedInvoke();
                     tsk.Start();
 
                     if (!tsk.Wait(stg.WaitTimeout))
@@ -281,6 +307,11 @@ namespace Pokker.Backend
                 }
                 n++;
             }
+        }
+
+        private void ShowDown()
+        {
+            this.UpdatedInvoke();
         }
 
         private void MoveButton()
@@ -295,34 +326,12 @@ namespace Pokker.Backend
             deck.Shuffle(this.rnd);
         }
 
-        private void BettingInvoke(uint player, uint timeout)
+        private void UpdatedInvoke()
         {
-            EventHandler<BettingEventArgs> eh = this.Betting;
-            if (eh != null)
-            {
-                BettingEventArgs ea = new BettingEventArgs();
-                ea.Player = player;
-                ea.Timeout = timeout;
-
-                eh(this, ea);
-            }
-        }
-
-        private void PlayerJoinedInvoke()
-        {
-            EventHandler eh = this.PlayerJoined;
+            EventHandler eh = this.Updated;
             if (eh != null)
             {
                 eh(this, EventArgs.Empty);
-            }
-        }
-
-        private void ReadyInvoke(uint delay)
-        {
-            EventHandler<ReadyEventArgs> eh = this.Ready;
-            if (eh != null)
-            {
-                eh(this, new ReadyEventArgs(delay));
             }
         }
 
