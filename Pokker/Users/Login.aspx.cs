@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Pokker.Users
+namespace Pokker.Pages
 {
     public partial class Login : System.Web.UI.Page
     {
@@ -43,8 +44,17 @@ namespace Pokker.Users
             }
 
             lblError.Visible = false;
-            Session.Add("name", uname.Value);
-            Page.Response.Redirect("../MainPage/Entrance.aspx");
+
+            Response.Cookies.Add(this.GetAuthCookie(uname.Value));
+            Response.Redirect("../Pages/Entrance.aspx");
+        }
+
+        private HttpCookie GetAuthCookie(string name)
+        {
+            HttpCookie authCookie = FormsAuthentication.GetAuthCookie(name, true);
+            authCookie.Expires = DateTime.Now.AddDays(10);
+
+            return authCookie;
         }
     }
 }

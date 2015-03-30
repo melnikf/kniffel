@@ -20,7 +20,7 @@
                         <a class="btn-black" runat="server" href="~/Users/Login.aspx">Вход</a></li>
                     </AnonymousTemplate>
                     <LoggedInTemplate>
-                        <%--<asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />--%>
+                        <a class="btn-black" runat="server" href="~/Pages/Entrance.aspx">Кабинет</a></li>
                     </LoggedInTemplate>
                 </asp:LoginView>
             </div>

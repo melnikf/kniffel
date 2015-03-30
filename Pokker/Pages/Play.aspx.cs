@@ -16,34 +16,8 @@ namespace Pokker
         protected void Page_Load(object sender, EventArgs e)
         {
             ptable = PokerTableProvider.GetTable();
-            if (!Page.IsPostBack)
-            {
-                Page.Session.Add("pid", ptable.Join(Session["name"].ToString()));
-                this.UpdateState();   
-            }
             id = int.Parse(Page.Session["pid"].ToString());
         }
-
-        #region old
-
-        private void Showdown(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void Betting(object sender, BettingEventArgs e)
-        {
-        }
-
-        private void PlayerJoined(object sender, EventArgs e)
-        {
-        }
-
-        private void Ready(object sender, ReadyEventArgs e)
-        {
-        } 
-
-        #endregion
 
         private void UpdateState()
         {

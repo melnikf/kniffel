@@ -7,7 +7,7 @@
 // </автоматически создаваемое>
 //------------------------------------------------------------------------------
 
-namespace Pokker.Users {
+namespace Pokker.Pages {
     
     
     public partial class Login {

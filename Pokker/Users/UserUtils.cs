@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using Pokker.Models;
 
-namespace Pokker.Users
+namespace Pokker.Pages
 {
     public static class UserUtils
     {

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Pokker.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Pokker.Users.Login" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Pokker.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Pokker.Pages.Login" %>
 
 <asp:Content ID="bodyLogin" ContentPlaceHolderID="body" runat="server">
 

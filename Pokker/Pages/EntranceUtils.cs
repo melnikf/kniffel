@@ -4,9 +4,9 @@ using System.Linq;
 using System.Web;
 using Pokker.Models;
 
-namespace Pokker.MainPage
+namespace Pokker.Pages
 {
-    public class MainPageUtils
+    public class EntranceUtils
     {
         public static string TakeEmail(string login)
         {
@@ -19,7 +19,7 @@ namespace Pokker.MainPage
             return email;
         }
 
-        public static int TakeChips(string login)
+        public static int GetCash(string login)
         {
             int chips;
             using (PokkerDbContext ctx = new PokkerDbContext())

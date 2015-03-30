@@ -83,8 +83,8 @@
     <Content Include="Content\Pokker.css" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
-    <Content Include="MainPage\Entrance.aspx" />
-    <Content Include="Play.aspx" />
+    <Content Include="Pages\Entrance.aspx" />
+    <Content Include="Pages\Play.aspx" />
     <Content Include="Users\Login.aspx" />
     <Content Include="Users\SignUp.aspx" />
     <Content Include="Web.config">
@@ -110,22 +110,22 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="MainPage\Entrance.aspx.cs">
+    <Compile Include="Pages\Entrance.aspx.cs">
       <DependentUpon>Entrance.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="MainPage\Entrance.aspx.designer.cs">
+    <Compile Include="Pages\Entrance.aspx.designer.cs">
       <DependentUpon>Entrance.aspx</DependentUpon>
     </Compile>
-    <Compile Include="MainPage\MainPageUtils.cs" />
+    <Compile Include="Pages\EntranceUtils.cs" />
     <Compile Include="Models\PokkerDbContext.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\Player.cs" />
-    <Compile Include="Play.aspx.cs">
+    <Compile Include="Pages\Play.aspx.cs">
       <DependentUpon>Play.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Play.aspx.designer.cs">
+    <Compile Include="Pages\Play.aspx.designer.cs">
       <DependentUpon>Play.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pokker.Master.cs">
@@ -158,6 +158,15 @@
     </Content>
     <Content Include="Pokker.Master" />
     <Content Include="packages.config" />
+    <Content Include="Pages\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Pages\Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Pages\Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

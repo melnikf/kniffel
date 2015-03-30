@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Pokker.Users
+namespace Pokker.Pages
 {
     public partial class SignUp : System.Web.UI.Page
     {
@@ -48,7 +48,9 @@ namespace Pokker.Users
                 UserUtils.SignUpUser(uname.Value, umail.Value, upass.Value);
                 Page.ClientScript.RegisterStartupScript(this.GetType(),
                 "alert", "Reg();", true);
-                // TODO: Перенаправление на персональную страницу.
+
+                Session.Add("name", uname.Value);
+                Page.Response.Redirect("../Pages/Entrance.aspx");
             }
             catch
             {

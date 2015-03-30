@@ -131,9 +131,16 @@ input:focus {
 
 .status-bar
 {
-    font-family:Impact;
-    width:350px;
-    height:300px;
+    font-family: Impact;
+    width: 400px;
+    height: 400px;
+    margin: 8px;
+}
+
+
+.status-bar ul
+{
+    height: 100%;
 }
 
 .status-bar li
@@ -143,7 +150,6 @@ input:focus {
     border-left:solid;
     border-left-color:#EB7835;
     padding-left:10px;
-    margin:5px;
 }
 
 .row-content 
@@ -184,8 +190,8 @@ input:focus {
 .tbl-stats
 {
     overflow: scroll; 
-    width: 287px; 
-    height: 200px;
+    width: 100%; 
+    height: 100%;
 }
 
 .poker-screen {
