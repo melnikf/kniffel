@@ -25,7 +25,7 @@ namespace Pokker.MainPage
             using (PokkerDbContext ctx = new PokkerDbContext())
             {
                 var player = ctx.Players.FirstOrDefault(p => p.Name == login);
-                chips = player.Chips;
+                chips = player.Cash;
             }
             return chips;
         }

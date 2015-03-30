@@ -22,6 +22,6 @@ namespace Pokker.Models
         [Column("pass")]
         public string Pass { get; set; }
         [Column("chips")]
-        public int Chips { get; set; }
+        public int Cash { get; set; }
     }
 }

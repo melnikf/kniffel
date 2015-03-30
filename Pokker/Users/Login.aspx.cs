@@ -43,8 +43,8 @@ namespace Pokker.Users
             }
 
             lblError.Visible = false;
-            string Login=uname.Value.ToString();
-            Response.Redirect("http://localhost:54719/MainPage/Entrance.aspx?Login="+Login);
+            Session.Add("name", uname.Value);
+            Page.Response.Redirect("../MainPage/Entrance.aspx");
         }
     }
 }
