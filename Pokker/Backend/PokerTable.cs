@@ -239,7 +239,7 @@ namespace Pokker.Backend
             // 
             round = 3;
             ShuffleDeck();
-            DealCards(1);
+            OpenCards(1);
             BettingRound();
             MoveButton();
 
@@ -247,7 +247,7 @@ namespace Pokker.Backend
             // 
             round = 4;
             ShuffleDeck();
-            DealCards(1);
+            OpenCards(1);
             BettingRound();
             MoveButton();
 

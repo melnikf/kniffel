@@ -70,29 +70,29 @@ namespace Pokker.Pages
 
             switch (card.weight)
             {
-                case 0: res += "Двойка"; break;
-                case 1: res += "Тройка"; break;
-                case 2: res += "Четверка"; break;
-                case 3: res += "Пятерка"; break;
-                case 4: res += "Шестерка"; break;
-                case 5: res += "Семерка"; break;
-                case 6: res += "Восьмерка"; break;
-                case 7: res += "Девятка"; break;
-                case 8: res += "Десятка"; break;
-                case 9: res += "Валет"; break;
-                case 10: res += "Дама"; break;
-                case 11: res += "Король"; break;
-                case 12: res += "Туз"; break;
+                case 1: res += "Двойка"; break;
+                case 2: res += "Тройка"; break;
+                case 3: res += "Четверка"; break;
+                case 4: res += "Пятерка"; break;
+                case 5: res += "Шестерка"; break;
+                case 6: res += "Семерка"; break;
+                case 7: res += "Восьмерка"; break;
+                case 8: res += "Девятка"; break;
+                case 9: res += "Десятка"; break;
+                case 10: res += "Валет"; break;
+                case 11: res += "Дама"; break;
+                case 12: res += "Король"; break;
+                case 13: res += "Туз"; break;
             }
 
             res += " ";
 
             switch (card.suit)
             {
-                case 0: res += "Трефы"; break;
-                case 1: res += "Пики"; break;
-                case 2: res += "Червы"; break;
-                case 3: res += "Бубны"; break;
+                case 1: res += "Трефы"; break;
+                case 2: res += "Пики"; break;
+                case 3: res += "Червы"; break;
+                case 4: res += "Бубны"; break;
             }
 
             return res;

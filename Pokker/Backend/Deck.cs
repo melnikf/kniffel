@@ -22,16 +22,18 @@ namespace Pokker.Backend
 
         public Deck()
         {
-            int i, j;
+            int i, j, n;
 
             cards = new Card[dmax];
 
-            for(i = 0; i < wmax; i++)
+            n = 0;
+            for(i = 1; i <= wmax; i++)
             {
-                for(j = 0; j < smax; j++)
+                for(j = 1; j <= smax; j++)
                 {
-                    cards[i + j].weight = i;
-                    cards[i + j].suit = j;
+                    cards[n].weight = i;
+                    cards[n].suit = j;
+                    n++;
                 }
             }
         }
