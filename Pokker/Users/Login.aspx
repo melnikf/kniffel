@@ -2,13 +2,6 @@
 
 <asp:Content ID="bodyLogin" ContentPlaceHolderID="body" runat="server">
 
-    <script type="text/javascript">
-        function NoReg()
-        {
-            alert('Что-то пошло нетак...');
-        }
-   </script>
-
     <div class="form-std container">
         <div class='col-std'>
             <div class='inp-std'>

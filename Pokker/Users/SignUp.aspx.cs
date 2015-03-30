@@ -43,20 +43,9 @@ namespace Pokker.Pages
 
             lblError.Visible = false;
 
-            try
-            {
                 UserUtils.SignUpUser(uname.Value, umail.Value, upass.Value);
-                Page.ClientScript.RegisterStartupScript(this.GetType(),
-                "alert", "Reg();", true);
-
                 Session.Add("name", uname.Value);
                 Page.Response.Redirect("../Pages/Entrance.aspx");
-            }
-            catch
-            {
-                Page.ClientScript.RegisterStartupScript(this.GetType(),
-                "alert", "NoReg();", true);
-            }
             
         }
     }

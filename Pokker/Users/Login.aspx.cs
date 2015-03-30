@@ -21,16 +21,12 @@ namespace Pokker.Pages
             {
                 lblError.Visible = true;
                 lblError.InnerText = "Имена короче 4-х знаков запрещены";
-                Page.ClientScript.RegisterStartupScript(this.GetType(),
-                "alert", "NoReg();", true);
                 return;
             }
             if (!UserUtils.StringValid(upass.Value, 4))
             {
                 lblError.Visible = true;
                 lblError.InnerText = "Минимальное количество символов в пароле - 4";
-                Page.ClientScript.RegisterStartupScript(this.GetType(),
-                "alert", "NoReg();", true);
                 return;
             }
 
@@ -38,8 +34,6 @@ namespace Pokker.Pages
             {
                 lblError.Visible = true;
                 lblError.InnerText = "Неправильное имя или пароль";
-                Page.ClientScript.RegisterStartupScript(this.GetType(),
-                "alert", "NoReg();", true);
                 return;
             }
 
