@@ -17,7 +17,33 @@ namespace Pokker.Backend
 
         private Deck deck;                      // Колода.
         private List<PokerPlayer> players;      // Игроки.
+        private List<PokerWinner> winners;      // Победители.
         private List<Card> board;               // Открытые карты.
+
+        private int[,] combs = 
+        {
+            {0,1,2,3,4},
+            {0,1,2,3,5},
+            {0,1,2,3,6},
+            {0,1,2,4,5},
+            {0,1,2,4,6},
+            {0,1,2,5,6},
+            {0,1,3,4,5},
+            {0,1,3,4,6},
+            {0,1,3,5,6},
+            {0,1,4,5,6},
+            {0,2,3,4,5},
+            {0,2,3,4,6},
+            {0,2,3,5,6},
+            {0,2,4,5,6},
+            {0,3,4,5,6},
+            {1,2,3,4,5},
+            {1,2,3,4,6},
+            {1,2,3,5,6},
+            {1,2,4,5,6},
+            {1,3,4,5,6},
+            {2,3,4,5,6}
+        };
 
         /*
          * 0 - ready-to-game
@@ -30,6 +56,10 @@ namespace Pokker.Backend
         private int round = -1;
         private int aplayer = -1;
         private int button = -1;
+
+        private uint bank = 0;
+
+        private string gameName = "";
 
         public event EventHandler Updated;
         public event EventHandler Showdown;
@@ -49,6 +79,16 @@ namespace Pokker.Backend
             get { return round; }
         }
 
+        public int Bank
+        {
+            get { return (int)bank; }
+        }
+
+        public bool Finished
+        {
+            get { return round == 5; }
+        }
+
         public int ActivePlayer
         {
             get { return aplayer; }
@@ -65,7 +105,13 @@ namespace Pokker.Backend
             stg = new PokerSettings();
             deck = new Deck();
             players = new List<PokerPlayer>(stg.PlayersMax);
+            winners = new List<PokerWinner>(stg.PlayersMax);
             board = new List<Card>();
+        }
+
+        public PokerWinner[] GetWinners()
+        {
+            return winners.ToArray();
         }
 
         public int GetPlayerBet(int n)
@@ -165,6 +211,7 @@ namespace Pokker.Backend
                 if (cur + amount >= max && players[i].CanBet(amount))
                 {
                     players[i].Bet(amount);
+                    bank += amount;
                     completed = true;
                 }
             }
@@ -215,6 +262,8 @@ namespace Pokker.Backend
 
         private void StartGame()
         {
+            gameName = DateTime.Now.ToFileTimeUtc().ToString();
+
             this.UpdatedInvoke();
 
             button = 0;
@@ -276,6 +325,74 @@ namespace Pokker.Backend
                 board.Add(deck.GetCard());
         }
 
+        private int FindBestCards(int n)
+        {
+            int i, c, nc;
+
+            Card[] targ = new Card[7];
+
+            Combination cmb;
+
+            Array.Copy(players[n].ShowHand(), targ, 2);
+            Array.Copy(board.ToArray(), targ, 5);
+
+            c = 0;
+            for(i = 0; i < combs.GetLength(0); i++)
+            {
+                cmb = new Combination(new Card[5] 
+                { 
+                    targ[combs[i, 0]], 
+                    targ[combs[i, 1]], 
+                    targ[combs[i, 2]], 
+                    targ[combs[i, 3]], 
+                    targ[combs[i, 4]] 
+                });
+
+                nc = cmb.FindBest();
+                if (nc > c) c = nc;
+            }
+
+            return c;
+        }
+
+        private void FindWinners()
+        {
+            List<PokerPlayer> tmp = new List<PokerPlayer>(players.Count);
+            int[] bestCards = new int[players.Count];
+            int bestComb, i, win;
+
+            for(i = 0; i < players.Count; i++)
+            {
+                bestCards[i] = this.FindBestCards(i);
+            }
+
+            bestComb = bestCards.Max();
+
+            for (i = 0; i < players.Count; i++)
+            {
+                if (bestCards[i] == bestComb)
+                {
+                    tmp.Add(players[i]);
+                }
+            }
+
+            win = (int)bank / tmp.Count;
+
+            for (i = 0; i < tmp.Count; i++)
+            {
+                tmp[i].AddWin((uint)win);
+                winners.Add(new PokerWinner(tmp[i].Name, (int)tmp[i].WinTotal, bestComb));
+            }
+        }
+
+        private void SaveResult()
+        {
+            foreach(PokerPlayer pl in players)
+            {
+                pl.Save(gameName);
+            }
+        }
+
         private void BettingRound()
         {
             do
@@ -311,6 +428,15 @@ namespace Pokker.Backend
 
         private void ShowDown()
         {
+            Task tsk;
+
+            tsk = new Task(() => 
+                {
+                    this.FindWinners();
+                    this.SaveResult();
+                });
+            tsk.Start();
+            tsk.Wait();
             this.UpdatedInvoke();
         }
 

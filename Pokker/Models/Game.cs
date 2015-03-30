@@ -18,7 +18,7 @@ namespace Pokker.Models
         [Column("player_id")]
         public int PlayerId { get; set; }
         [Column("chips")]
-        public int Chips { get; set; }
+        public int Bank { get; set; }
         [Column("result")]
         public byte Result { get; set; }
     }

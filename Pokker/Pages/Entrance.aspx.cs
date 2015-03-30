@@ -40,12 +40,27 @@ namespace Pokker.Pages
                 state += ptable.GetPlayerName(i) + " ";
                 state += "Ставка: " + ptable.GetPlayerBet(i) + "\n";
             }
+            state += "Банк: \n";
+            state += ptable.Bank + "\n";
             state += "Открытые карты: \n";
             state += this.GetCards(ptable.ShowBoard()) + "\n";
             if (gameId >= 0)
             {
                 state += "Рука: \n";
                 state += this.GetCards(ptable.ShowHand((uint)gameId)) + "\n";
+            }
+
+            if (ptable.Finished)
+            {
+                state += "Игра окончена! \n";
+                state += "Победитель(и): \n";
+                foreach(PokerWinner w in ptable.GetWinners())
+                {
+                    state += w.Name + "\n";
+
+                    state += "Выигрыш: " + w.WinTotal + "\n";
+                    state += "Комбинация: " + this.GetCombination(w.Combination) + "\n";
+                }
             }
 
             txtState.Text = state;
@@ -62,6 +77,35 @@ namespace Pokker.Pages
                 res += GetCard(cards[i]) + "; ";
             }
             return res;
+        }
+
+        private string GetCombination(int c)
+        {
+            switch (c)
+            {
+                case 0:
+                    return "Старшая карта";
+                case 1:
+                    return "Пара";
+                case 2:
+                    return "Две пары";
+                case 3:
+                    return "Тройка";
+                case 4:
+                    return "Стрит";
+                case 5:
+                    return "Флэш";
+                case 6:
+                    return "Фул-хаус";
+                case 7:
+                    return "Карэ";
+                case 8:
+                    return "Стрит-флэш";
+                case 9:
+                    return "Роял-флэш";
+                default:
+                    return "Ждем игроков";
+            }
         }
 
         private string GetCard(Card card)
@@ -188,7 +232,7 @@ namespace Pokker.Pages
                 else
                 {
                     tblGames.Rows[i].Cells[0].Text = games[i - 1].Name;
-                    tblGames.Rows[i].Cells[1].Text = (games[i - 1].Chips).ToString();
+                    tblGames.Rows[i].Cells[1].Text = (games[i - 1].Bank).ToString();
                     tblGames.Rows[i].Cells[2].Text = (games[i - 1].Result).ToString();
                 }
             }
@@ -223,8 +267,7 @@ namespace Pokker.Pages
             if (gameId >= 0)
             {
                 id = (uint)gameId;
-                amount = uint.Parse(inpBet.Value);
-                if (ptable.Bet(id, amount))
+                if (uint.TryParse(inpBet.Value.ToString(), out amount) && ptable.Bet(id, amount))
                     this.UpdateState();
                 else
                     inpBet.Value = "Не удалось...";

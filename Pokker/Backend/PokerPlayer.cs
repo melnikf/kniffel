@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pokker.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -15,8 +16,12 @@ namespace Pokker.Backend
         private uint cash;              // Кэш общий.
         private uint betTotal;          // Сколько поставил всего (не больше кэша).
 
+        private uint winTotal;          // Сколько выиграл.
+
         private bool folded = false;
         private bool sleep = false;
+
+        private bool winner = false;
 
         private List<Card> hand;
 
@@ -30,9 +35,24 @@ namespace Pokker.Backend
             get { return name; }
         }
 
+        public bool Winner
+        {
+            get { return winner; }
+        }
+
         public uint BetTotal
         {
             get { return betTotal; }
+        }
+
+        public uint WinTotal
+        {
+            get { return winTotal; }
+        }
+
+        public uint ResultCash
+        {
+            get { return cash - betTotal + winTotal; }
         }
 
         public uint Cash
@@ -62,6 +82,28 @@ namespace Pokker.Backend
             this.hand = new List<Card>();
         }
 
+        public void Save(string gameName)
+        {
+            using (PokkerDbContext ctx = new PokkerDbContext())
+            {
+                Player pl = ctx.Players.FirstOrDefault(p => p.PlayerId == this.db_id);
+                Game gm = new Game();
+
+                pl.Cash = (int)this.ResultCash;
+
+                gm.Name = gameName;
+                gm.PlayerId = this.db_id;
+                gm.Bank = (int)this.WinTotal;
+                if (this.Winner)
+                    gm.Result = 1;
+                else
+                    gm.Result = 0;
+
+                ctx.Games.Add(gm);
+                ctx.SaveChanges();
+            }
+        }
+
         public void NeedAction()
         {
             sleep = true;
@@ -70,6 +112,12 @@ namespace Pokker.Backend
         public Card[] ShowHand()
         {
             return hand.ToArray();
+        }
+
+        public void AddWin(uint amount)
+        {
+            winTotal = amount;
+            winner = true;
         }
 
         public void AddCard(Card card)

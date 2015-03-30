@@ -91,7 +91,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Backend\Combination.cs" />
     <Compile Include="Backend\PokerSettings.cs" />
+    <Compile Include="Backend\PokerWinner.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
