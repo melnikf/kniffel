@@ -25,7 +25,6 @@ namespace Pokker.Pages
 
             name = this.GetUserName();
 
-            Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "Reg();", true);
             lblName.Text = name;
             lblEmail.Text = EntranceUtils.TakeEmail(name);
             lblCash.Text = EntranceUtils.GetCash(name).ToString();

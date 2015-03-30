@@ -2,13 +2,6 @@
 
 <asp:Content ID="bodyEntrance" ContentPlaceHolderID="body" runat="server">
 
-    <script type="text/javascript">
-        function Reg()
-        {
-            alert('Вы успешно авторизовались!');
-        }
-    </script>
-
     <div class="col-std">
         <div class="status-bar">
             <ul>
