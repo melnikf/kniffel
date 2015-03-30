@@ -38,6 +38,9 @@ namespace Pokker.Users
 
             lblError.Visible = false;
             // TODO: Перенаправление на персональную страницу.
+
+            Session.Add("name", uname.Value);
+            Page.Response.Redirect("../Play.aspx");
         }
     }
 }

@@ -58,7 +58,7 @@ a.title:visited {
     display: flex;
     flex-direction: row;
     font-size: 0.8em;
-    margin-top: 8px;
+    margin: 8px;
 }
 
 .inp-std > label {
@@ -88,7 +88,7 @@ input:focus {
     color: #333333;
     transition: box-shadow 0.45s;
     transition: background-color 0.25s;
-    margin-top: 8px;
+    margin: 8px;
 }
 
 .btn-std:hover {
@@ -127,4 +127,27 @@ input:focus {
     color: #EE4C4C;
     font-size: 0.8em;
     padding-top: 8px;
+}
+
+.poker-screen {
+    width: 800px;
+    height: 400px;
+    border: 1px solid #4D4D4D;
+    padding: 8px;
+    margin: 4px;
+}
+
+.poker-join {
+    width: 600px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.poker-state {
+    font-size: 0.9em;
+}
+
+.poker-players {
+    width: 100%;
 }

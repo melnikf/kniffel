@@ -83,6 +83,7 @@
     <Content Include="Content\Pokker.css" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Play.aspx" />
     <Content Include="Users\Login.aspx" />
     <Content Include="Users\SignUp.aspx" />
     <Content Include="Web.config">
@@ -90,6 +91,8 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Backend\PokerSettings.cs" />
+    <Compile Include="Backend\ReadyEventArgs.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -97,12 +100,25 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Backend\Card.cs" />
+    <Compile Include="Backend\Deck.cs" />
+    <Compile Include="Backend\PokerTableProvider.cs" />
+    <Compile Include="Backend\BettingEventArgs.cs" />
+    <Compile Include="Backend\PokerPlayer.cs" />
+    <Compile Include="Backend\PokerTable.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\PokkerDbContext.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\Player.cs" />
+    <Compile Include="Play.aspx.cs">
+      <DependentUpon>Play.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Play.aspx.designer.cs">
+      <DependentUpon>Play.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pokker.Master.cs">
       <DependentUpon>Pokker.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

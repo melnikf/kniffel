@@ -69,7 +69,7 @@ namespace Pokker.Users
                 player.Name = name;
                 player.Email = email;
                 player.Pass = pass;
-                player.Chips = 100;
+                player.Cash = 100;
                 player.RegDate = DateTime.Now.ToString();
 
                 ctx.Players.Add(player);
