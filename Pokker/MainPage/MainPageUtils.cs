@@ -30,18 +30,25 @@ namespace Pokker.MainPage
             return chips;
         }
 
-        public static int TakeGames(string login)
+        public static Game[] TakeGames(string login)
         {
             int id_player;
-            int tmp;
+            IEnumerable<Game> tmp;
+            Game[] games;
             using (PokkerDbContext ctx = new PokkerDbContext())
             {
+                int i=0;
                 var player = ctx.Players.FirstOrDefault(p => p.Name == login);
                 id_player = player.PlayerId;
-                IEnumerable<Game> games = ctx.Games.Where(p => p.PlayerId == id_player);
-                tmp = games.Count();
+                tmp = ctx.Games.Where(p => p.PlayerId == id_player);
+                games=new Game[tmp.Count()];
+                foreach(Game p in tmp)
+                {
+                    games[i]=p;
+                    i++;
+                }
             }
-            return tmp;
+            return games;
         }
     }
 }

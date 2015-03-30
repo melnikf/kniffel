@@ -40,12 +40,12 @@ namespace Pokker.MainPage {
         protected global::System.Web.UI.WebControls.Label lbChips;
         
         /// <summary>
-        /// lbGames элемент управления.
+        /// tblGames элемент управления.
         /// </summary>
         /// <remarks>
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox lbGames;
+        protected global::System.Web.UI.WebControls.Table tblGames;
     }
 }

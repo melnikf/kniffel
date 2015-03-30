@@ -23,7 +23,10 @@
                 <asp:Label ID="lbChips" runat="server" Text="Баланс:"></asp:Label>
             </li>
             <li>
-                <asp:ListBox ID="lbGames" runat="server"></asp:ListBox>
+                <div class="tbl-stats">
+                <asp:Table ID="tblGames" runat="server">                 
+                </asp:Table>
+                </div>
             </li>
         </ul>
         </div>

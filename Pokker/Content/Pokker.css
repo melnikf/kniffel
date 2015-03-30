@@ -133,7 +133,7 @@ input:focus {
 .status-bar
 {
     font-family:Impact;
-    width:500px;
+    width:350px;
     height:300px;
 }
 
@@ -180,6 +180,13 @@ input:focus {
     border-style:solid;
     text-decoration:underline;
     font-weight:bold;
+}
+
+.tbl-stats
+{
+    overflow: scroll; 
+    width: 287px; 
+    height: 200px;
 }
 
 
