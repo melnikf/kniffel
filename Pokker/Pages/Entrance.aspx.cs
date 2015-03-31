@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using Pokker.Models;
 using System.Web.Security;
 using Pokker.Backend;
+using System.Web.UI.HtmlControls;
 
 namespace Pokker.Pages
 {
@@ -25,8 +26,12 @@ namespace Pokker.Pages
 
         private void UpdateState()
         {
+            HtmlImage img;
+            Card[] tmp;
+            
+            int i, n;
+
             string state = "";
-            int i;
 
             state += this.GetRoundName(ptable.Round) + "\n";
             state += "Игроки: \n";
@@ -43,11 +48,29 @@ namespace Pokker.Pages
             state += "Банк: \n";
             state += ptable.Bank + "\n";
             state += "Открытые карты: \n";
-            state += this.GetCards(ptable.ShowBoard()) + "\n";
+            tmp = ptable.ShowBoard();
+            n = 1;
+            for (i = 0; i < tmp.Length; i++)
+            {
+                string id = "imgCard" + (n++).ToString();
+                img = (HtmlImage)WebControlExtender.FindControlRecursive(Page, id);
+                img.Src = GetCardImage(tmp[i]);
+                state += GetCard(tmp[i]) + "; ";
+            }
+            state += "\n";
             if (gameId >= 0)
             {
                 state += "Рука: \n";
-                state += this.GetCards(ptable.ShowHand((uint)gameId)) + "\n";
+                tmp = ptable.ShowHand((uint)gameId);
+                n = 6;
+                for (i = 0; i < tmp.Length; i++)
+                {
+                    string id = "imgCard" + (n++).ToString();
+                    img = (HtmlImage)WebControlExtender.FindControlRecursive(Page, id);
+                    img.Src = GetCardImage(tmp[i]);
+                    state += GetCard(tmp[i]) + "; ";
+                }
+                state += "\n";
             }
 
             if (ptable.Finished)
@@ -66,17 +89,15 @@ namespace Pokker.Pages
             txtState.Text = state;
         }
 
-        private string GetCards(Card[] cards)
+        private void ResetCards()
         {
-            int i;
-            string res;
-
-            res = "";
-            for (i = 0; i < cards.Length; i++)
-            {
-                res += GetCard(cards[i]) + "; ";
-            }
-            return res;
+            imgCard1.Src = "/Content/Cards/0.png";
+            imgCard2.Src = "/Content/Cards/0.png";
+            imgCard3.Src = "/Content/Cards/0.png";
+            imgCard4.Src = "/Content/Cards/0.png";
+            imgCard5.Src = "/Content/Cards/0.png";
+            imgCard6.Src = "/Content/Cards/0.png";
+            imgCard7.Src = "/Content/Cards/0.png";
         }
 
         private string GetCombination(int c)
@@ -138,6 +159,18 @@ namespace Pokker.Pages
                 case 3: res += "Червы"; break;
                 case 4: res += "Бубны"; break;
             }
+
+            return res;
+        }
+
+        private string GetCardImage(Card card)
+        {
+            string res = "/Content/Cards/";
+            int n;
+
+            n = (52 - (card.weight - 1) * 4) + (card.suit - 4);
+
+            res += n.ToString() + ".png";
 
             return res;
         }
@@ -286,6 +319,28 @@ namespace Pokker.Pages
         protected void updTimer_Tick(object sender, EventArgs e)
         {
             this.UpdateState();
+        }
+    }
+
+    public static class WebControlExtender
+    {
+        public static Control FindControlRecursive(this Control root, string id)
+        {
+            if (root.ID == id)
+            {
+                return root;
+            }
+
+            foreach (Control c in root.Controls)
+            {
+                Control t = FindControlRecursive(c, id);
+                if (t != null)
+                {
+                    return t;
+                }
+            }
+
+            return null;
         }
     }
 }

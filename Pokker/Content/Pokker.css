@@ -35,7 +35,7 @@ a.title:visited {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items:center;
+    align-items: center;
 }
 
 .header-title {
@@ -120,7 +120,7 @@ input:focus {
 .col-std {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
 }
 
 .error {
@@ -196,10 +196,21 @@ input:focus {
 
 .poker-screen {
     width: 400px;
-    height: 400px;
-    border: 1px solid #4D4D4D;
+    height: 100%;
     padding: 8px;
-    margin: 4px;
+    margin: 8px;
+}
+
+.poker-cards {
+    margin: 8px;
+}
+
+.poker-cards-list {
+    display: flex;
+    flex-direction: row;
+    align-content: flex-start;
+    height: 100px;
+    margin:4px;
 }
 
 .poker-state {
@@ -207,5 +218,9 @@ input:focus {
 }
 
 .poker-players {
-    width: 400px;
+    width: 90%;
+    padding: 4px;
+    margin: 8px;
+    border: none;
+    resize: none;
 }
